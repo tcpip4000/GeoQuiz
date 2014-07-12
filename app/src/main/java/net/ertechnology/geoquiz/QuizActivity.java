@@ -2,10 +2,12 @@ package net.ertechnology.geoquiz;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,9 +16,11 @@ public class QuizActivity extends ActionBarActivity {
 
     private Button mTrueButton;
     private Button mFalseButton;
-    private Button mNextButton, mBackButton;
+    private ImageButton mNextButton, mBackButton;
     private TextView mQuestionTextView;
     private int mCurrentIndex = 0;
+
+    private static final String TAG = "QuizActity";
 
     private TrueFalse[] mQuestionBank = new TrueFalse[] {
         new TrueFalse(R.string.question_mideast, false),
@@ -26,7 +30,10 @@ public class QuizActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_quiz);
+
+
 
         mQuestionTextView = (TextView)findViewById(R.id.question_text_view);
         int question = mQuestionBank[mCurrentIndex].getQuestion();
@@ -54,7 +61,7 @@ public class QuizActivity extends ActionBarActivity {
             }
         });
 
-        mNextButton = (Button)findViewById(R.id.next_button);
+        mNextButton = (ImageButton)findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -63,11 +70,11 @@ public class QuizActivity extends ActionBarActivity {
             }
         });
 
-        mBackButton = (Button)findViewById(R.id.back_button);
+        mBackButton = (ImageButton)findViewById(R.id.back_button);
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
+                mCurrentIndex = Math.abs((mCurrentIndex - 1) % mQuestionBank.length);
                 updateQuestion();
             }
         });
