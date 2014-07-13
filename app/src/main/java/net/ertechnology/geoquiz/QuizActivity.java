@@ -20,7 +20,7 @@ public class QuizActivity extends ActionBarActivity {
     private TextView mQuestionTextView;
     private int mCurrentIndex = 0;
 
-    private static final String TAG = "QuizActity";
+    private static final String TAG = "QuizActivity";
     private static final String KEY_INDEX = "index";
 
     private TrueFalse[] mQuestionBank = new TrueFalse[] {
@@ -101,7 +101,7 @@ public class QuizActivity extends ActionBarActivity {
     private void checkAnswer(boolean userPressedTrue) {
         boolean answerIsTrue = mQuestionBank[mCurrentIndex].isTrueQuestion();
 
-        int messageResId = 0;
+        int messageResId;
         if (userPressedTrue == answerIsTrue) {
             messageResId = R.string.correct_toast;
         } else {
