@@ -1,6 +1,5 @@
 package net.ertechnology.geoquiz;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class QuizActivity extends Activity {
+public class QuizActivity extends ActionBarActivity {
 
     private Button mTrueButton;
     private Button mFalseButton;
